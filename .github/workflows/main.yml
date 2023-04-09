@@ -27,6 +27,7 @@ jobs:
     - name: Clean temp directory
       run: |
         rm -rf *
+        rsync -Rr $GITHUB_WORKSPACE .
       
     - name: archive drcloud 
       run: tar cvfz ./drcloud.tar.gz *
