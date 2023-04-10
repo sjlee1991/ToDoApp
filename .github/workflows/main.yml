@@ -31,7 +31,8 @@ jobs:
       
     - name: Build
       run: |
-        cd  / 
+        pwd
+        ls
         yarn run build
       
     - name: archive drcloud 
