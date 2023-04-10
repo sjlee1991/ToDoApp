@@ -27,7 +27,9 @@ jobs:
       run: node -v
     
     - name: Install Dependencies
-      run: yarn install --frozen-lockfile
+      run: |
+        cd todo-app
+        yarn install --frozen-lockfile
       
     - name: Build
       run: |
