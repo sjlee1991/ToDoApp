@@ -51,7 +51,7 @@ jobs:
       
     - name: deploy with AWS codeDeploy
       run: aws deploy create-deployment
-        --application-name githubaction
+        --application-name testApp
         --deployment-config-name CodeDeployDefault.OneAtATime
-        --deployment-group-name githubaction-group
+        --deployment-group-name frontend-group
         --s3-location bucket=sujin-bucket,bundleType=tgz,key=archive/drcloud.tar.gz
