@@ -37,9 +37,7 @@ jobs:
         yarn run build
       
     - name: zip create
-      run: |
-        cd todo-app
-        zip -qq -r ./build-fe.zip .
+      run: zip -qq -r ./build-fe.zip .
        
     - name: AWS configure credentials
       uses: aws-actions/configure-aws-credentials@v1
