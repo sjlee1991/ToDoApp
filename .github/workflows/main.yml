@@ -36,8 +36,10 @@ jobs:
         cd todo-app
         yarn run build
       
-    - name: archive drcloud 
-      run: tar cvfz ./drcloud.tar.gz *
+    - name: zip create
+      run: |
+        cd todo-app
+        zip -qq -r ./build-fe.zip .
        
     - name: AWS configure credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -47,11 +49,11 @@ jobs:
         aws-region: ap-northeast-2
         
     - name: upload to S3
-      run: aws s3 cp --region ap-northeast-2 ./drcloud.tar.gz s3://sujin-bucket/archive/
+      run: aws s3 cp --region ap-northeast-2 ./build-fe.zip s3://sujin-bucket/archive/
       
     - name: deploy with AWS codeDeploy
       run: aws deploy create-deployment
         --application-name testApp
         --deployment-config-name CodeDeployDefault.OneAtATime
         --deployment-group-name frontend-group
-        --s3-location bucket=sujin-bucket,bundleType=tgz,key=archive/drcloud.tar.gz
+        --s3-location bucket=sujin-bucket,bundleType=zip,key=archive/build-fe.zip
