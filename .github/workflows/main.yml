@@ -30,7 +30,9 @@ jobs:
       run: yarn install --frozen-lockfile
       
     - name: Build
-      run: yarn build
+      run: |
+        cd  / 
+        yarn run build
       
     - name: archive drcloud 
       run: tar cvfz ./drcloud.tar.gz *
