@@ -22,12 +22,15 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: checkout release
       uses: actions/checkout@v3
-
-    # Runs a single command using the runners shell 
-    - name: Clean temp directory
-      run: |
-        rm -rf *
-        rsync -Rr $GITHUB_WORKSPACE .
+    
+    - name: Check Node v
+      run: node -v
+    
+    - name: Install Dependencies
+      run: yarn install --frozen-lockfile
+      
+    - name: Build
+      run: yarn build
       
     - name: archive drcloud 
       run: tar cvfz ./drcloud.tar.gz *
